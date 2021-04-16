@@ -1,4 +1,4 @@
-module auxdev.at/storage-server
+module auxdev.at/storage-node
 
 go 1.12
 
