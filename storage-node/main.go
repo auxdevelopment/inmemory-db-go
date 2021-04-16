@@ -9,12 +9,22 @@ import (
 	"github.com/gorilla/mux"
 )
 
+const (
+	defaultPort       = 8080
+	defaultConfigPath = ""
+)
+
 func main() {
 	router := mux.NewRouter()
 	server := server.NewServer()
 
+	configFlag := flag.String("conf", "", "Path to configuration file.")
 	portFlag := flag.Int("port", 8080, "Port on which the storage server will listen")
 	flag.Parse()
+
+	if *configFlag != defaultConfigPath {
+		// TODO
+	}
 
 	router.HandleFunc("/values", server.StorePairHandler).Methods("PUT")
 	router.HandleFunc("/values/{key}", server.GetPairHandler).Methods("GET")
