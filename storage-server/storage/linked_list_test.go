@@ -74,10 +74,10 @@ func TestRemoveEnclosedNode(t *testing.T) {
 	list := NewLinkedList()
 
 	nodes := [4]*ListNode{
-		&ListNode{KeyValuePair{"Head", "HeadValue"}, nil, nil},
-		&ListNode{KeyValuePair{"First", "FirstValue"}, nil, nil},
-		&ListNode{KeyValuePair{"Second", "SecondValue"}, nil, nil},
-		&ListNode{KeyValuePair{"Third", "ThirdValue"}, nil, nil},
+		{KeyValuePair{"Head", "HeadValue"}, nil, nil},
+		{KeyValuePair{"First", "FirstValue"}, nil, nil},
+		{KeyValuePair{"Second", "SecondValue"}, nil, nil},
+		{KeyValuePair{"Third", "ThirdValue"}, nil, nil},
 	}
 
 	for _, value := range nodes {
@@ -105,10 +105,10 @@ func TestGetHead(t *testing.T) {
 	searchKey := "Head"
 
 	nodes := [4]*ListNode{
-		&ListNode{KeyValuePair{searchKey, "HeadValue"}, nil, nil},
-		&ListNode{KeyValuePair{"First", "FirstValue"}, nil, nil},
-		&ListNode{KeyValuePair{"Second", "SecondValue"}, nil, nil},
-		&ListNode{KeyValuePair{"Third", "ThirdValue"}, nil, nil},
+		{KeyValuePair{searchKey, "HeadValue"}, nil, nil},
+		{KeyValuePair{"First", "FirstValue"}, nil, nil},
+		{KeyValuePair{"Second", "SecondValue"}, nil, nil},
+		{KeyValuePair{"Third", "ThirdValue"}, nil, nil},
 	}
 
 	for _, value := range nodes {
@@ -132,10 +132,10 @@ func TestGetArbitraryValue(t *testing.T) {
 	searchKey := "Second"
 
 	nodes := [4]*ListNode{
-		&ListNode{KeyValuePair{"Head", "HeadValue"}, nil, nil},
-		&ListNode{KeyValuePair{"First", "FirstValue"}, nil, nil},
-		&ListNode{KeyValuePair{searchKey, "SecondValue"}, nil, nil},
-		&ListNode{KeyValuePair{"Third", "ThirdValue"}, nil, nil},
+		{KeyValuePair{"Head", "HeadValue"}, nil, nil},
+		{KeyValuePair{"First", "FirstValue"}, nil, nil},
+		{KeyValuePair{searchKey, "SecondValue"}, nil, nil},
+		{KeyValuePair{"Third", "ThirdValue"}, nil, nil},
 	}
 
 	for _, value := range nodes {

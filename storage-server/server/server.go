@@ -94,8 +94,9 @@ func (server *Server) GetAllPairsHandler(w http.ResponseWriter, r *http.Request)
 	result, err := server.hashMap.GetAll()
 
 	if err != nil {
-		w.WriteHeader(404)
-		w.Write([]byte("Error"))
+		w.WriteHeader(500)
+		response, _ := json.Marshal(&MessageResponse{Message: "Internal error while trying to load all keys"})
+		w.Write(response)
 
 		return
 	}
@@ -109,5 +110,6 @@ func (server *Server) GetAllPairsHandler(w http.ResponseWriter, r *http.Request)
 func (server *Server) GetStatusHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	w.WriteHeader(200)
-	w.Write([]byte("OK\n"))
+	response, _ := json.Marshal(&MessageResponse{Message: "OK"})
+	w.Write(response)
 }
