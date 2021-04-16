@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"auxdev.at/storage-server/storage"
+	"auxdev.at/storage-node/storage"
 	"github.com/gorilla/mux"
 )
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"auxdev.at/storage-server/server"
+	"auxdev.at/storage-node/server"
 	"github.com/gorilla/mux"
 )
 
