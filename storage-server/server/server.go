@@ -10,6 +10,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type MessageResponse struct {
+	Message string `json:"message"`
+}
+
 type Server struct {
 	hashMap *storage.HashMap
 	logger  *log.Logger
@@ -34,8 +38,9 @@ func (server *Server) StorePairHandler(w http.ResponseWriter, r *http.Request) {
 	if err := decoder.Decode(&pair); err != nil {
 		server.logger.Println(err)
 
-		w.WriteHeader(500)
-		w.Write([]byte("{ \"message\": \"Internal server error while processing request body\" }\n"))
+		w.WriteHeader(400)
+		response, _ := json.Marshal(&MessageResponse{Message: "Invalid request body."})
+		w.Write(response)
 
 		return
 	}
@@ -44,7 +49,8 @@ func (server *Server) StorePairHandler(w http.ResponseWriter, r *http.Request) {
 		server.logger.Println(err)
 
 		w.WriteHeader(500)
-		w.Write([]byte("{ \"message\": \"Internal server error while trying to store pair\" }\n"))
+		response, _ := json.Marshal(&MessageResponse{Message: "Internal server error while trying to store pair."})
+		w.Write(response)
 
 		return
 	}
@@ -54,7 +60,8 @@ func (server *Server) StorePairHandler(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	w.WriteHeader(200)
-	w.Write([]byte("{ \"message\": \"OK\" }\n"))
+	response, _ := json.Marshal(&MessageResponse{Message: "OK"})
+	w.Write(response)
 }
 
 func (server *Server) GetPairHandler(w http.ResponseWriter, r *http.Request) {
@@ -69,7 +76,8 @@ func (server *Server) GetPairHandler(w http.ResponseWriter, r *http.Request) {
 		server.logger.Println(err)
 
 		w.WriteHeader(404)
-		w.Write([]byte("{ \"message\": \"Requested resource could not be found\" }\n"))
+		response, _ := json.Marshal(&MessageResponse{Message: "Not found."})
+		w.Write(response)
 
 		return
 	}

@@ -22,5 +22,8 @@ func main() {
 	router.HandleFunc("/status", server.GetStatusHandler).Methods("GET")
 
 	fmt.Println("Starting server")
-	http.ListenAndServe(fmt.Sprintf(":%d", *portFlag), router)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", *portFlag), router)
+	if err != nil {
+		fmt.Println("Could not start server.")
+	}
 }
